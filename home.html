@@ -1,0 +1,164 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="stylesheet.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script type="text/javascript" src="functionality.js"></script>
+        <script type="text/javascript" src="db_handler.js"></script>
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        
+        <title>TO DO APP</title>
+    </head>
+    <body>
+        <div class="whole-container">
+            <div class="header">
+                To-Do App
+            </div>           
+            <div class="body-container">
+                <div class="left-container">
+                    <div class="boxes">
+                            <div class="to-do-list-container">
+                                    To-Do List                        
+                                    <div class="to-do-list-dropdown">
+                                            <i class="down" onclick="displayDropdownList()"></i>
+                                    </div>
+                                    <div class="add-item-todolist" onclick="addItemToList()">
+                                        <span class="glyphicon" >&#x2b;</span>
+                                    </div>
+                            </div>
+                    </div>
+                    <div id="add-item-pop-up">
+                        Title:<br><input id="todo-element-name" class="todo-element-input"></input><br>
+                        Color:<br><input id="todo-element-color" class="todo-element-input"></input><br>
+                        Description:<br><input id="todo-element-desc" class="todo-element-input"></input><br>
+                        <button class="btn success" onclick="AddItemToDb()">Add task</button>
+                        <button class="btn cancel" onclick="hideItemPopUp()">Cancel</button>
+                    </div>
+                    <div class="boxes">
+                            <div class="scheduled-container" onclick="displayScheduleTab()">                                    
+                                    <div class="scheduled-icon">
+                                        <!--<img src="clock.png"></img>-->
+                                    </div>
+                                    <div class="scheduled-text" >
+                                        Scheduled
+                                    </div>                                    
+                            </div>
+                    </div>
+                    <div id="left-tabs-container">        <!--loaded dynamically--> <!--define properties for other tabs-->            
+                    </div>
+                                       
+                </div>                
+                 <!--   <div class="search-tab">                                                                       
+                    </div>-->                    
+                    <!--<div class="db_right_nav" id="db_right_nav">	
+                    
+                    </div>-->
+               
+             <div id="right-container">                    
+               <div class="search-tab"> </div>
+                 <div id="result-container">                    
+                  <div class="reminder-container" style="display:none">
+                    <div class="reminders-tab-container">
+                        <div class="reminder-text">
+                            Reminders
+                        </div>
+                        <div class="options-tab" onclick="displayOptionsTab()">
+                            Options                                                                                            
+                        </div>
+                        <div id="options-popup-box">
+                            <div class="options-rect-reminder">Reminders</div>				
+                            <div class="options-list-color">List Color</div>			
+                            <div class="options-color-palatte">
+                                <div class="options-color-1" onclick="changeColor('#B2F35F')"></div>
+                                <div class="options-color-2" onclick="changeColor('#F2A716')"></div>
+                                <div class="options-color-3" onclick="changeColor('#FF4B4B')"></div>
+								<div class="options-color-4" onclick="changeColor('#FD96FF')"></div>
+								<div class="options-color-5" onclick="changeColor('#3AFFF3')"></div>
+								<div class="options-color-6" onclick="changeColor('#8527FD')"></div>
+								<div class="options-color-7" onclick="changeColor('#1695F2')"></div>
+                            </div>
+                            <div class="options-buttons">
+                                <div class="options-delete">DELETE</div>
+                                <div class="options-cancel" onclick="hideOptionsTab()">CANCEL</div>
+                                <div class="options-done" onclick="hideOptionsTab()">DONE</div>										
+                            </div>
+                        </div>
+                    </div>
+                    <div class="reminders-count-container">
+                        <div class="count-icon"> <!--can display an icon here-->
+
+                        </div>
+                        <div id="reminders-count-value"> 
+
+                        </div>
+                    </div>
+                    <div id="right-tabs-container"> <!--onclick for color bubble and details tab,time and date adjust-->                        
+                    </div>  
+                    <div id="reminder-popup-container">                            
+                    </div>  
+                    <div id="details-popup-container">
+                        <div id='popup_box_details'>
+                                <div class="details-title">Details</div>
+                                <div class="details-remindme">Remind Me</div>
+                                <div class="on-a-day-container">
+                                    <input type="checkbox" id="on-a-day-checkbox"> On a day<br>                            
+                                </div>      
+                                <div class="details-list-container">
+                                    <div class="details-list-title">List</div>
+                                    <select name="list-title">
+                                        <option value="reminder">Reminders</option>                                                                        
+                                    </select>
+                                </div>                          
+                                <div id="details-priority-container">                                    
+                                </div>
+                                <div id="notes-container">
+
+                                </div>
+                                
+                        </div>
+                   </div>                   
+                </div>  
+                <div class="scheduled-page-container" style="display:none">                        
+                    <div class="scheduled-page-text">
+                             Scheduled
+                    </div> 
+                    <div id="right-scheduled-tabs-container">
+
+                    </div>
+                    <div id="scheduled-popup-container">
+
+                    </div>
+                </div>
+                <div id="general-container" style="display: none"> 
+                    <div class="general-page-text">
+                        General
+                    </div> 
+                    <div id="right-general-tabs-container">
+
+                    </div>
+                    <div id="general-popup-container">
+
+                   </div>
+                </div>
+                
+                    <!--<div class=""-->
+
+                    </div>               
+                </div>          
+             </div>
+            </div>
+        </div>
+    </body>
+</html>
+
+<!--<div class="add-reminder-popup" onClick="displayReminderPopup()"><div id="reminder-popup">Enter the name of the reminder:<br>
+        <input id="reminder-name" class="reminder-element-input"></input><br>'+'Enter the date:<br><input id="reminder-date" class="reminder-element-input" placeholder="yyyy/mm/dd"></input><br>'+'Enter the time:<br><input id="reminder-time" class="reminder-element-input" placeholder="HH:MM hrs"></input><br>'+
+    '<button id="reminder-done-button" onclick="addReminderToDb()">Add Remainder</button><button id="remainder-cancel-button" onclick="cancelRemainder()">Cancel</button>
+    </div>
+    <div class="new-item-button">
+        + New Item
+    </div>
+</div>';-->

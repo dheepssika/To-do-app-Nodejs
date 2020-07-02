@@ -1,0 +1,88 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="stylesheet.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script type="text/javascript" src="functionality.js"></script>
+        <script type="text/javascript" src="db_handler.js"></script>
+
+        <!----<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">-->
+        <!--<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>-->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        
+        <title>TO DO APP</title>
+    </head>
+    <body>
+        <div class="whole-container">
+            <div class="header">
+                To-Do App
+            </div>           
+            <div class="body-container">
+                <div class="left-container">
+                    <div class="boxes">
+                            <div class="to-do-list-container">
+                                    To-Do List                        
+                                    <div class="to-do-list-dropdown">
+                                            <i class="down" onclick="displayDropdownList()"></i>
+                                    </div>
+                                    <div class="add-item-todolist" onclick="addItemToList()">
+                                        <span class="glyphicon" >&#x2b;</span>
+                                    </div>
+                            </div>
+                    </div>
+                    <div id="add-item-pop-up">
+                        Title:<br><input id="todo-element-name" class="todo-element-input"></input><br>
+                        Color:<br><input id="todo-element-color" class="todo-element-input"></input><br>
+                        Description:<br><input id="todo-element-desc" class="todo-element-input"></input><br>
+                        <button class="btn success" onclick="AddItemToDb()">Add task</button>
+                    </div>
+                    <div class="boxes">
+                            <div class="scheduled-container">                                    
+                                    <div class="scheduled-icon">
+                                        <!--<img src="clock.png"></img>-->
+                                    </div>
+                                    <div class="scheduled-text">
+                                        Scheduled
+                                    </div>                                    
+                            </div>
+                    </div>
+                    <div id="left-tabs-container">        <!--loaded dynamically--> <!--define properties for other tabs-->            
+                    </div>
+                                       
+                </div>                
+                 <!--   <div class="search-tab">                                                                       
+                    </div>-->                    
+                    <!--<div class="db_right_nav" id="db_right_nav">	
+                    
+                    </div>-->
+               
+             <div id="right-container">                    
+               <div class="search-tab"> </div>
+                 <div id="result-container">                    
+                  <div class="reminder-container" style="display:none">
+                    <div class="reminders-tab-container">
+                        <div class="reminder-text">
+                           Reminder
+                        </div>                        
+                    </div>                    
+                    <div id="right-tabs-container"> <!--onclick for color bubble and details tab,time and date adjust-->
+                        <!--<div class="add-reminder-popup" onClick="displayReminderPopup()">-->
+                            
+                        <!--</div>-->
+                    </div>  
+                    
+                 </div>  
+                <div id="scheduled-page-container">
+                    <div class="temp">
+                        Hello
+                    </div>
+                </div>          
+             </div>
+            </div>
+        </div>
+    </body>
+</html>
+
