@@ -34,11 +34,11 @@ db.connect((err) => {
     }
     console.log('Connected to database');
 });
+
 //data to be displayed on page reload
 testy.get('/left_nav', function (req, res) {
 	db.query("SELECT * FROM to_do_list", function (err, result, fields) {
     if (err) throw err;
-	//console.log(JSON.stringify(result));
     res.json(result);
     });
 });
@@ -49,19 +49,25 @@ testy.post('/add_todo',function(req,res){
     if (err) throw err;
     res.end("yes");});
 });
+testy.post('/search_call',function(req,res){
+	var quer=`select * from list_content where item_name like '${req.body.search_query}'	`;
+	db.query(quer,function(err,result,fields){
+		console.log(result);
+		if(err) throw err;
+	res.json(result); });
+	
+});
 
-testy.get('/right_nav', function (req, res) {
-	db.query("SELECT * FROM list_content where status = 0 order by priority asc", function (err, result, fields) {				
+testy.post('/right_nav', function (req, res) {
+	db.query(`SELECT * FROM list_content where list_item = '${req.body.task_name}' and status = 0 order by priority asc`, function (err, result, fields) {				
 		if (err) throw err;
 		res.json(result);
 	});
 });
 //Layout changes for scheduled tab
 testy.get('/scheduled_nav_tabs', function (req, res) {
-	console.log("scheduled");
 	db.query("SELECT * FROM scheduled  order by creation_date", function (err, result, fields) {				
 		if (err) throw err;
-		console.log(result);
 		res.json(result);
 	});
 });
@@ -73,26 +79,26 @@ testy.get('/count_completed', function (req, res) {
 	});
 }); 
 //funtion to update when the priority of a task changes
-testy.post('/update_priority',function(req,res){
-	var quer=`update list_content set priority='${req.body.priority_value}' where  item_name='${req.body.reminder_name}';`
+testy.post('/update_priority',function(req,res){	
+	var quer=`update list_content set priority='${req.body.priority_value}' where item_name='${req.body.item_name}';`
 	db.query(quer,function(err,result,fields){
 		if(err) throw err;
 	res.end("yes"); });
 	
 });
-//functions for reminders
-
-testy.post('/reminder_add_item',function(req,res){
-	var quer=`insert into list_content values('${req.body.reminder_name}','Remainder','${req.body.reminder_date}','${req.body.reminder_time}',0,0);`
+testy.post('/element_add_item',function(req,res){
+	if(req.body.task_name == 'scheduled'){
+        var quer=`insert into scheduled values('${req.body.element_name}','${req.body.element_date}','${req.body.element_time}',0,0);`
+    }else{
+		var quer=`insert into list_content values('${req.body.element_name}','${req.body.task_name}','${req.body.element_date}','${req.body.element_time}',0,0);`
+	}
 	db.query(quer,function(err,result,fields){
 		if(err) throw err;
 	res.end("yes"); });
 	
 });
 testy.post('/update_remainder_status',function(req,res){
-    console.log(req.body.reminder_name);
     var quer=`update list_content set status = 1 where item_name='${req.body.reminder_name}';`
-    console.log(quer);
 	db.query(quer,function(err,result,fields){
 		if(err) throw err;
 	res.end("yes"); });
